@@ -1,0 +1,20 @@
+<?php
+if(!defined('T_PROVEIDOR')) define('T_PROVEIDOR','proveedor');
+if(!defined('T_PROVEIDORS')) define('T_PROVEIDORS','proveedores');
+if(!defined('T_PROVEIDOR_PREUS')) define('T_PROVEIDOR_PREUS','precios proveedor');
+if(!defined('T_PROVEIDOR_DADES_FISCALS')) define('T_PROVEIDOR_DADES_FISCALS','datos fiscales proveedor');
+if(!defined('T_PROVEIDOR_ERROR_ESBORRAR_COMANDA')) define('T_PROVEIDOR_ERROR_ESBORRAR_COMANDA','El proveedor no se puede borrar, tiene pedidos asignados');
+if(!defined('T_PROVEIDOR_ERROR_ESBORRAR_ALBARA')) define('T_PROVEIDOR_ERROR_ESBORRAR_ALBARA','El proveedor no se puede borrar, tiene albaranes asignados');
+if(!defined('T_PROVEIDOR_ERROR_ESBORRAR_FACTURA')) define('T_PROVEIDOR_ERROR_ESBORRAR_FACTURA','El proveedor no se puede borrar, tiene facturas asignadas');
+if(!defined('T_PROVEIDOR_DADES_FACTURACIO')) define('T_PROVEIDOR_DADES_FACTURACIO','datos facturación');
+if(!defined('T_PROVEIDOR_COMPTE_COMPTABLE')) define('T_PROVEIDOR_COMPTE_COMPTABLE','cuenta contable');
+if(!defined('T_PROVEIDOR_FORMA_PAGAMENT')) define('T_PROVEIDOR_FORMA_PAGAMENT','forma de pago');
+if(!defined('T_PROVEIDOR_DIA_1_PAGAMENT')) define('T_PROVEIDOR_DIA_1_PAGAMENT','día 1 pago');
+if(!defined('T_PROVEIDOR_DIA_2_PAGAMENT')) define('T_PROVEIDOR_DIA_2_PAGAMENT','día 2 pago');
+if(!defined('T_PROVEIDOR_COMPTE_BANCARI')) define('T_PROVEIDOR_COMPTE_BANCARI','cuenta bancaria');
+if(!defined('T_PROVEIDOR_AFEGEIX_FORMA_PAGAMENT')) define('T_PROVEIDOR_AFEGEIX_FORMA_PAGAMENT','añadir forma de pago');
+if(!defined('T_PROVEIDOR_ELIMINA')) define('T_PROVEIDOR_ELIMINA','elimina');
+if(!defined('T_PROVEIDOR_NOM')) define('T_PROVEIDOR_NOM','nombre proveedor');
+if(!defined('T_PROVEIDOR_NOU')) define('T_PROVEIDOR_NOU','nuevo proveedor');
+if(!defined('T_PROVEIDOR_FITXA')) define('T_PROVEIDOR_FITXA','ficha proveedor');
+if(!defined('T_PROVEIDOR_CIF')) define('T_PROVEIDOR_CIF','CIF proveedor');

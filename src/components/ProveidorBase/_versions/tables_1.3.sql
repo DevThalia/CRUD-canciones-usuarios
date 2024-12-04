@@ -1,0 +1,3 @@
+ALTER TABLE `proveidors` ADD `codiComptableProveidor` VARCHAR(255) NULL DEFAULT NULL AFTER `longitudComptaComptableProveidor`, ADD `idFormaPagament` INT(11) NOT NULL DEFAULT '0' AFTER `codiComptableProveidor`, ADD `dia1Pagament` VARCHAR(255) NULL DEFAULT NULL AFTER `idFormaPagament`, ADD `dia2Pagament` VARCHAR(255) NULL DEFAULT NULL AFTER `dia1Pagament`, ADD `compteBancariProveidor` VARCHAR(255) NULL DEFAULT NULL AFTER `dia2Pagament`;
+
+ALTER TABLE `proveidors` ADD `flagActiuProveidor` INT NOT NULL DEFAULT '1' AFTER `codiImpresa`;
