@@ -29,14 +29,14 @@ $maximPaginaProveidor = 25; //NUMERO MAXIM DE LINIES A UN LLISTAT
 switch ($tipusMostra) {
 
     default:
-    if(!isset($idProveidor)) $idProveidor='';
-    if(!isset($nomProveidor)) $nomProveidor='';
-    if(!isset($emailProveidor)) $emailProveidor='';
-    if(!isset($cifFacturacioProveidor)) $cifFacturacioProveidor='';
-    if(!isset($paisFacturacioProveidor)) $paisFacturacioProveidor='';
-    if(!isset($poblacioFacturacioProveidor)) $poblacioFacturacioProveidor='';
-    if(!isset($flagActiuProveidor)) $flagActiuProveidor='';
-    if(!isset($campOrdre)) $campOrdre='';
+        if (!isset($idProveidor)) $idProveidor = '';
+        if (!isset($nomProveidor)) $nomProveidor = '';
+        if (!isset($emailProveidor)) $emailProveidor = '';
+        if (!isset($cifFacturacioProveidor)) $cifFacturacioProveidor = '';
+        if (!isset($paisFacturacioProveidor)) $paisFacturacioProveidor = '';
+        if (!isset($poblacioFacturacioProveidor)) $poblacioFacturacioProveidor = '';
+        if (!isset($flagActiuProveidor)) $flagActiuProveidor = '';
+        if (!isset($campOrdre)) $campOrdre = '';
 
 ?>
         <div class="barraSuperior" <?= $onMouseDown ?>>
@@ -45,14 +45,14 @@ switch ($tipusMostra) {
                 if ($onMouseDown) {
                     echo '<div class="float-right"><a href="javascript:void(null);" onClick="buidaCapa(\'' . $capa . '\');refrescaCapa(\'' . $capaOrigen . '\')" class="fa fa-times noDisabled" title="Cerrar"></a></div>';
                 } ?>
-                <h1><?=ucfirst(T_LLISTAT) . ' ' . T_PROVEIDORS?></h1>
+                <h1><?= ucfirst(T_LLISTAT) . ' ' . T_PROVEIDORS ?></h1>
             </div>
         </div>
         <div class="container-fluid">
             <div class="navbar menuOperacions">
                 <?php if ($usuariSessio->permisOperacio('gestioProveidors') == 1) { ?>
-                    <a class="nav-link btn btn-outline-secondary"  onClick="javascript:actualitza('finestra1','<?= $proveidorsFitxa ?>?capaOrigen=<?= $capa ?>');">
-                        <i class="fa fa-plus" style="font-size:1em;"></i> <?=ucfirst(T_NOU) . ' ' . T_PROVEIDOR?>
+                    <a class="nav-link btn btn-outline-secondary" onClick="javascript:actualitza('finestra1','<?= $proveidorsFitxa ?>?capaOrigen=<?= $capa ?>');">
+                        <i class="fa fa-plus" style="font-size:1em;"></i> <?= ucfirst(T_NOU) . ' ' . T_PROVEIDOR ?>
                     </a>
                 <?php } ?>
             </div>
@@ -60,7 +60,7 @@ switch ($tipusMostra) {
                 <div class="card-body">
                     <?php
 
-                    echo '<form name="llistatProveidors" action="javascript:actualitzaH(\'' . $capa . '\',\'' . $proveidorsLlista . '?tipusMostra=llista&capaOrigen='.$capaOrigen;
+                    echo '<form name="llistatProveidors" action="javascript:actualitzaH(\'' . $capa . '\',\'' . $proveidorsLlista . '?tipusMostra=llista&capaOrigen=' . $capaOrigen;
                     echo '&idProveidor=\'+document.llistatProveidors.idProveidor.value+\'';
                     echo '&nomProveidor=\'+document.llistatProveidors.nomProveidor.value+\'';
                     echo '&emailProveidor=\'+document.llistatProveidors.emailProveidor.value+\'';
@@ -83,57 +83,57 @@ switch ($tipusMostra) {
                             <th style="width:100px;">ID
                                 <?php $columnaOrdre = 'proveidors.idProveidor'; ?>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> ASC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' ASC') echo 'fa-caret-up active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-up'; ?>"></i></a>
+                                                                                                                                                                                                                                            else echo 'fa-angle-up'; ?>"></i></a>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> DESC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' DESC') echo 'fa-caret-down active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-down'; ?>"></i></a>
+                                                                                                                                                                                                                                                else echo 'fa-angle-down'; ?>"></i></a>
                             </th>
-                            <th><?=ucfirst(T_NOM)?>
+                            <th><?= ucfirst(T_NOM) ?>
                                 <?php $columnaOrdre = 'proveidors.nomProveidor'; ?>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> ASC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' ASC') echo 'fa-caret-up active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-up'; ?>"></i></a>
+                                                                                                                                                                                                                                            else echo 'fa-angle-up'; ?>"></i></a>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> DESC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' DESC') echo 'fa-caret-down active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-down'; ?>"></i></a>
+                                                                                                                                                                                                                                                else echo 'fa-angle-down'; ?>"></i></a>
                             </th>
-                            <th><?=ucfirst(T_EMAIL)?>
+                            <th><?= ucfirst(T_EMAIL) ?>
                                 <?php $columnaOrdre = 'proveidors.emailProveidor'; ?>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> ASC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' ASC') echo 'fa-caret-up active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-up'; ?>"></i></a>
+                                                                                                                                                                                                                                            else echo 'fa-angle-up'; ?>"></i></a>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> DESC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' DESC') echo 'fa-caret-down active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-down'; ?>"></i></a>
+                                                                                                                                                                                                                                                else echo 'fa-angle-down'; ?>"></i></a>
                             </th>
-                            <th><?=ucfirst(T_PROVEIDOR_CIF)?>
+                            <th><?= ucfirst(T_PROVEIDOR_CIF) ?>
                                 <?php $columnaOrdre = 'proveidors.cifFacturacioProveidor'; ?>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> ASC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' ASC') echo 'fa-caret-up active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-up'; ?>"></i></a>
+                                                                                                                                                                                                                                            else echo 'fa-angle-up'; ?>"></i></a>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> DESC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' DESC') echo 'fa-caret-down active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-down'; ?>"></i></a>
+                                                                                                                                                                                                                                                else echo 'fa-angle-down'; ?>"></i></a>
                             </th>
                             <th>
-                            <?=ucfirst(T_PAIS)?>
+                                <?= ucfirst(T_PAIS) ?>
                                 <?php $columnaOrdre = 'proveidors.paisFacturacioProveidor'; ?>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> ASC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' ASC') echo 'fa-caret-up active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-up'; ?>"></i></a>
+                                                                                                                                                                                                                                            else echo 'fa-angle-up'; ?>"></i></a>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> DESC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' DESC') echo 'fa-caret-down active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-down'; ?>"></i></a>
-                                   
+                                                                                                                                                                                                                                                else echo 'fa-angle-down'; ?>"></i></a>
+
                             </th>
                             <th>
-                            <?=ucfirst(T_POBLACIO)?>
+                                <?= ucfirst(T_POBLACIO) ?>
                                 <?php $columnaOrdre = 'proveidors.poblacioFacturacioProveidor'; ?>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> ASC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' ASC') echo 'fa-caret-up active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-up'; ?>"></i></a>
+                                                                                                                                                                                                                                            else echo 'fa-angle-up'; ?>"></i></a>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> DESC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' DESC') echo 'fa-caret-down active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-down'; ?>"></i></a>
-                                  
+                                                                                                                                                                                                                                                else echo 'fa-angle-down'; ?>"></i></a>
+
                             </th>
                             <th>
-                            <?=ucfirst(T_ACTIU)?>
+                                <?= ucfirst(T_ACTIU) ?>
                                 <?php $columnaOrdre = 'proveidors.flagActiuProveidor'; ?>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> ASC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' ASC') echo 'fa-caret-up active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-up'; ?>"></i></a>
+                                                                                                                                                                                                                                            else echo 'fa-angle-up'; ?>"></i></a>
                                 <a href="javascript:document.llistatProveidors.campOrdre.value='<?php echo $columnaOrdre; ?> DESC';document.llistatProveidors.limit.value='0';document.llistatProveidors.submit();"><i class="fa float-right <?php if ($campOrdre == $columnaOrdre . ' DESC') echo 'fa-caret-down active';
-                                                                                                                                                                                                                                    else echo 'fa-angle-down'; ?>"></i></a>
-                                   
+                                                                                                                                                                                                                                                else echo 'fa-angle-down'; ?>"></i></a>
+
                             </th>
                             <?php
                             echo '<tr>';
@@ -147,16 +147,16 @@ switch ($tipusMostra) {
                             // <input class="form-control" type="number"  name="flagActiuProveidor" value="' . $flagActiuProveidor . '" onchange="document.llistatProveidors.limit.value=0;submit();" />
                             echo '<td class="titol">
                                         <select class="form-control" style="width:50px;" name="flagActiuProveidor" onchange="document.llistatProveidors.limit.value=0;submit();">';
-                                        echo '<option value=""';
-                                        if ($flagActiuProveidor == '') echo ' selected ';
-                                        echo '>---</option>';
-                                        echo '<option value="1"';
-                                        if ($flagActiuProveidor == '1') echo ' selected ';
-                                        echo '>Sí</option>';
-                                        echo '<option value="0"';
-                                        if ($flagActiuProveidor == '0') echo ' selected ';
-                                        echo '>No</option>';
-                                        echo '</select></td>';
+                            echo '<option value=""';
+                            if ($flagActiuProveidor == '') echo ' selected ';
+                            echo '>---</option>';
+                            echo '<option value="1"';
+                            if ($flagActiuProveidor == '1') echo ' selected ';
+                            echo '>Sí</option>';
+                            echo '<option value="0"';
+                            if ($flagActiuProveidor == '0') echo ' selected ';
+                            echo '>No</option>';
+                            echo '</select></td>';
                             echo '</tr>';
                             ?>
                         </thead>
@@ -176,25 +176,25 @@ switch ($tipusMostra) {
                             if ($filtre) $filtre .= ' and ';
                             $filtre .= "proveidors.emailProveidor like  '%$emailProveidor%'";
                         }
-                        if($cifFacturacioProveidor) {
+                        if ($cifFacturacioProveidor) {
                             if ($filtre) $filtre .= ' and ';
                             $filtre .= "proveidors.cifFacturacioProveidor like  '%$cifFacturacioProveidor%'";
                         }
-                        if($paisFacturacioProveidor) {
+                        if ($paisFacturacioProveidor) {
                             if ($filtre) $filtre .= ' and ';
                             $filtre .= "proveidors.paisFacturacioProveidor like  '%$paisFacturacioProveidor%'";
                         }
-                        if($poblacioFacturacioProveidor) {
+                        if ($poblacioFacturacioProveidor) {
                             if ($filtre) $filtre .= ' and ';
                             $filtre .= "proveidors.poblacioFacturacioProveidor like  '%$poblacioFacturacioProveidor%'";
                         }
-                        if($flagActiuProveidor != "") {
+                        if ($flagActiuProveidor != "") {
                             if ($filtre) $filtre .= ' and ';
                             $filtre .= "proveidors.flagActiuProveidor =  $flagActiuProveidor";
                         }
 
-        
-                        if (!isset($campOrdre)) $campOrdre= 'proveidors.nomProveidor DESC';
+
+                        if (!isset($campOrdre)) $campOrdre = 'proveidors.nomProveidor DESC';
 
                         if (!isset($proveidor)) $proveidor = new Proveidor($db);
                         if ($a_llistaProveidors = $proveidor->llista($filtre, $campOrdre, $limit . ',' . $maximPaginaProveidor)) {
@@ -207,7 +207,7 @@ switch ($tipusMostra) {
                                 echo '<td>' . $proveidorTmp['cifFacturacioProveidor'] . '</td>';
                                 echo '<td>' . $proveidorTmp['paisFacturacioProveidor'] . '</td>';
                                 echo '<td>' . $proveidorTmp['poblacioFacturacioProveidor'] . '</td>';
-                                if($proveidorTmp['flagActiuProveidor'] == 1){
+                                if ($proveidorTmp['flagActiuProveidor'] == 1) {
                                     echo "<td>Sí</td>";
                                 } else {
                                     echo "<td>No</td>";
@@ -226,7 +226,7 @@ switch ($tipusMostra) {
                                             echo '<p style="text-align:center">';
                                             if (($limit - 1) >= 0) echo '<a class="taronja negreta" href="javascript:document.llistatProveidors.limit.value=\'' . ($limit - $maximPaginaProveidor) . '\'; document.llistatProveidors.submit();"> Anterior </a>';
                                             else echo '<span class="negreta" style="color:#CCCCCC; text-decoration:none"> Anterior </span>';
-                                            echo '<span class="negreta" style="margin-left:40px;">'.ucfirst(T_PAGINA).' ' . (($limit / $maximPaginaProveidor) + 1) . '</span> de ' . ceil($proveidor->numProveidors($filtre) / $maximPaginaProveidor);
+                                            echo '<span class="negreta" style="margin-left:40px;">' . ucfirst(T_PAGINA) . ' ' . (($limit / $maximPaginaProveidor) + 1) . '</span> de ' . ceil($proveidor->numProveidors($filtre) / $maximPaginaProveidor);
                                             $numeroActual = ceil((($limit / $maximPaginaProveidor) + 1));
                                             $numeroTotal = ceil($proveidor->numProveidors($filtre) / $maximPaginaProveidor);
                                             if ($numeroActual != $numeroTotal) echo '<a class="negreta" style="margin-left:40px;" href="javascript:document.llistatProveidors.limit.value=\'' . ($limit + $maximPaginaProveidor) . '\'; document.llistatProveidors.submit();"> Seg&uuml;ent </a>';
@@ -244,7 +244,7 @@ switch ($tipusMostra) {
         </div>
         <script>
             (function(window, document, $, undefined) {
-                activaMenu('#menu_llistaProveidors','<?=$capa?>');
+                activaMenu('#menu_llistaProveidors', '<?= $capa ?>');
             })(window, document, window.jQuery);
         </script>
 <?php

@@ -18,4 +18,3 @@ class Proveidor extends \ProveidorBase
     }
 
 }
-  

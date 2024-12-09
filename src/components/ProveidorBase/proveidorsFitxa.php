@@ -82,7 +82,7 @@ if (!isset($_REQUEST['idProveidor'])) {
             if ($capa == 'llistat') {
             ?>
                 <a onclick="tornarEnrera();" class="nav-link noDisabled">
-                    <i class="fa fa-reply"></i><?=ucfirst(T_TORNAR)?></a>
+                    <i class="fa fa-reply"></i><?= ucfirst(T_TORNAR) ?></a>
             <?php } ?>
         </div>
         <div class="card">
@@ -140,7 +140,7 @@ if (!isset($_REQUEST['idProveidor'])) {
     /*
      *  Si hem pasen el idProveidor carreguem la fitxa operacio en una pagina nova
      */
-     if ($usuariSessio->permisOperacio('gestioProveidors') == 2) {
+    if ($usuariSessio->permisOperacio('gestioProveidors') == 2) {
         $permisLectura = 1;
     } else {
         $permisLectura = 0;
@@ -164,7 +164,7 @@ if (!isset($_REQUEST['idProveidor'])) {
         <div class="navbar menuOperacions">
             <?php if ($usuariSessio->permisOperacio('gestioProveidors') == 1) { ?>
                 <a class="nav-link btn btn-outline-secondary" id="swal-eliminaPerfil">
-                    <i class="fa fa-trash-alt"></i> <?=ucfirst(T_PROVEIDOR_ELIMINA)?></a>
+                    <i class="fa fa-trash-alt"></i> <?= ucfirst(T_PROVEIDOR_ELIMINA) ?></a>
 
             <?php } ?>
             <a onclick="tornarEnrera();" class="nav-link btn btn-outline-secondary noDisabled">
@@ -185,8 +185,8 @@ if (!isset($_REQUEST['idProveidor'])) {
                                     <label class="control-label"><?= ucfirst(T_ACTIU) ?></label>
                                     <div>
                                         <input <?php echo $disabled; ?> type="checkbox" class="checkbox-switch" name="flagActiuProveidor" <?php if ($proveidor->get('flagActiuProveidor')) {
-                                            echo ' checked="checked"';
-                                        } ?> <?php echo $readonly; ?> onChange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?= $idProveidor; ?>,camp:this.name,valor:this.checked*1})" data-size="small" data-on-text="SI" data-off-text="NO">
+                                                                                                                                                echo ' checked="checked"';
+                                                                                                                                            } ?> <?php echo $readonly; ?> onChange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?= $idProveidor; ?>,camp:this.name,valor:this.checked*1})" data-size="small" data-on-text="SI" data-off-text="NO">
                                     </div>
                                 </div>
                                 <div class="col-md-6 form-group mb">
@@ -201,7 +201,7 @@ if (!isset($_REQUEST['idProveidor'])) {
                                     <label class="control-label"><?= ucfirst(T_COMENTARIS) ?></label>
                                     <textarea class="form-control" name="comentarisProveidor" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})"><?php echo escriu($proveidor->get('comentarisProveidor')); ?></textarea>
                                 </div>
-                                
+
                             </div>
                         </form>
                     </div>
@@ -245,22 +245,22 @@ if (!isset($_REQUEST['idProveidor'])) {
                                     <label class="control-label"><?= ucfirst(T_PROVINCIA) ?></label>
                                     <input type="text" placeholder="<?= ucfirst(T_PROVINCIA) ?>" class="form-control" name="provinciaFacturacioProveidor" value="<?php echo escriu($proveidor->get('provinciaFacturacioProveidor')); ?>" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
                                 </div>
-                                
+
                                 <?php
-                                    $pais = new Paisos($db);
-                                    $pais->llista();
+                                $pais = new Paisos($db);
+                                $pais->llista();
                                 ?>
 
                                 <div class="col-md-6 form-group mb">
                                     <label class="control-label"><?= ucfirst(T_PAIS) ?></label>
-                                    <select class="form-control select2" name="codiPaisFacturacioProveidor"  onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value,'paisFacturacioProveidor':$('#codiPais_'+this.value).attr('data-pais')})">
-                                    <option value="" id="codiPais_" data-pais="">-------</option>
+                                    <select class="form-control select2" name="codiPaisFacturacioProveidor" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value,'paisFacturacioProveidor':$('#codiPais_'+this.value).attr('data-pais')})">
+                                        <option value="" id="codiPais_" data-pais="">-------</option>
                                         <?php
-                                            while($pais->extreu()){
-                                                echo '<option value="' . $pais->get('codiPais') . '" id="codiPais_'.$pais->get('codiPais').'" data-pais="'.$pais->get('nomPais').'"';
-                                                if($pais->get('codiPais')==$proveidor->get('codiPaisFacturacioProveidor')) echo ' selected ';
-                                                echo ' >' . $pais->get('nomPais') . '</option>';
-                                            }
+                                        while ($pais->extreu()) {
+                                            echo '<option value="' . $pais->get('codiPais') . '" id="codiPais_' . $pais->get('codiPais') . '" data-pais="' . $pais->get('nomPais') . '"';
+                                            if ($pais->get('codiPais') == $proveidor->get('codiPaisFacturacioProveidor')) echo ' selected ';
+                                            echo ' >' . $pais->get('nomPais') . '</option>';
+                                        }
                                         ?>
                                     </select>
                                 </div>
@@ -275,51 +275,51 @@ if (!isset($_REQUEST['idProveidor'])) {
         <?php
         if (defined('CONF_CONSTANT_FacturesProveidorsBase_facturesProveidors_modulFacturesProveidors') && CONF_CONSTANT_FacturesProveidorsBase_facturesProveidors_modulFacturesProveidors) {
         ?>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card btGruiPrimary mb">
-                    <div class="card-header"><?= ucfirst(T_PROVEIDOR_DADES_FACTURACIO) ?></div>
-                    <div class="card-body">
-                        <div class="row">
-                            
-                            <div class="col-md-3 form-group mb">
-                                <label class="control-label"><?= ucfirst(T_PROVEIDOR_FORMA_PAGAMENT) ?></label>
-                                <select name="idFormaPagament" class="form-control" <?= $readonly ?> onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
-                                    <?php 
-                                    echo '<option value="0">---</option>';
-                                    $formesPagament = new FormaPagament($db);                                   
-                                    if (!$ordre) $ordre = 'formesPagament.aliasFormaPagament';
-                                    $formesPagament->llista('', $ordre);
-                                    while ($formesPagament->extreu()) {
-                                        echo '<option value="' . $formesPagament->get('idFormaPagament') . '"';
-                                        if ($proveidor->get('idFormaPagament') == $formesPagament->get('idFormaPagament')) echo ' selected';
-                                        echo '>' . $formesPagament->get('aliasFormaPagament');
-                                        echo '</option>';
-                                    }
-                                    ?>
-                                </select>
-                                <?php
-               		                // if (!$readonly) echo '<a href="javascript:actualitza(\'finestra1\',\''.$formesPagamentFitxa.'?capaOrigen='.$capaOrigen.'&idProveedor=' . $idProveedor . '\')">'.ucfirst(T_PROVEIDOR_AFEGEIX_FORMA_PAGAMENT).'</a>';
-                                ?>                                    
-                            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card btGruiPrimary mb">
+                        <div class="card-header"><?= ucfirst(T_PROVEIDOR_DADES_FACTURACIO) ?></div>
+                        <div class="card-body">
+                            <div class="row">
 
-                            <div class="col-md-3 form-group mb">
-                                <label class="control-label"><?= ucfirst(T_PROVEIDOR_DIA_1_PAGAMENT) ?></label>
-                                <input type="text" placeholder="<?= ucfirst(T_PROVEIDOR_DIA_1_PAGAMENT) ?>" class="form-control" name="dia1Pagament" value="<?php echo escriu($proveidor->get('dia1Pagament')); ?>" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
-                            </div>
-                            <div class="col-md-3 form-group mb">
-                                <label class="control-label"><?= ucfirst(T_PROVEIDOR_DIA_2_PAGAMENT) ?></label>
-                                <input type="text" placeholder="<?= ucfirst(T_PROVEIDOR_DIA_2_PAGAMENT) ?>" class="form-control" name="dia2Pagament" value="<?php echo escriu($proveidor->get('dia2Pagament')); ?>" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
-                            </div>
-                            <div class="col-md-3 form-group mb">
-                                <label class="control-label"><?= ucfirst(T_PROVEIDOR_COMPTE_BANCARI) ?></label>
-                                <input type="text" placeholder="<?= ucfirst(T_PROVEIDOR_COMPTE_BANCARI) ?>" class="form-control" name="compteBancariProveidor" value="<?php echo escriu($proveidor->get('compteBancariProveidor')); ?>" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
+                                <div class="col-md-3 form-group mb">
+                                    <label class="control-label"><?= ucfirst(T_PROVEIDOR_FORMA_PAGAMENT) ?></label>
+                                    <select name="idFormaPagament" class="form-control" <?= $readonly ?> onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
+                                        <?php
+                                        echo '<option value="0">---</option>';
+                                        $formesPagament = new FormaPagament($db);
+                                        if (!$ordre) $ordre = 'formesPagament.aliasFormaPagament';
+                                        $formesPagament->llista('', $ordre);
+                                        while ($formesPagament->extreu()) {
+                                            echo '<option value="' . $formesPagament->get('idFormaPagament') . '"';
+                                            if ($proveidor->get('idFormaPagament') == $formesPagament->get('idFormaPagament')) echo ' selected';
+                                            echo '>' . $formesPagament->get('aliasFormaPagament');
+                                            echo '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                    <?php
+                                    // if (!$readonly) echo '<a href="javascript:actualitza(\'finestra1\',\''.$formesPagamentFitxa.'?capaOrigen='.$capaOrigen.'&idProveedor=' . $idProveedor . '\')">'.ucfirst(T_PROVEIDOR_AFEGEIX_FORMA_PAGAMENT).'</a>';
+                                    ?>
+                                </div>
+
+                                <div class="col-md-3 form-group mb">
+                                    <label class="control-label"><?= ucfirst(T_PROVEIDOR_DIA_1_PAGAMENT) ?></label>
+                                    <input type="text" placeholder="<?= ucfirst(T_PROVEIDOR_DIA_1_PAGAMENT) ?>" class="form-control" name="dia1Pagament" value="<?php echo escriu($proveidor->get('dia1Pagament')); ?>" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
+                                </div>
+                                <div class="col-md-3 form-group mb">
+                                    <label class="control-label"><?= ucfirst(T_PROVEIDOR_DIA_2_PAGAMENT) ?></label>
+                                    <input type="text" placeholder="<?= ucfirst(T_PROVEIDOR_DIA_2_PAGAMENT) ?>" class="form-control" name="dia2Pagament" value="<?php echo escriu($proveidor->get('dia2Pagament')); ?>" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
+                                </div>
+                                <div class="col-md-3 form-group mb">
+                                    <label class="control-label"><?= ucfirst(T_PROVEIDOR_COMPTE_BANCARI) ?></label>
+                                    <input type="text" placeholder="<?= ucfirst(T_PROVEIDOR_COMPTE_BANCARI) ?>" class="form-control" name="compteBancariProveidor" value="<?php echo escriu($proveidor->get('compteBancariProveidor')); ?>" onchange="executa('<?= $proveidorsOperacions ?>',{operacio:'desaCampProveidor',idProveidor:<?php echo $proveidor->get('idProveidor'); ?>,'camp':this.name,'valor':this.value})">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <?php } ?>
 
         <?php if ($usuariSessio->permisOperacio('gestioProductes') > 0 && $productesLlista) { ?>
@@ -375,7 +375,7 @@ if (!isset($_REQUEST['idProveidor'])) {
         });
 
         <?php if ($permisLectura) {
-            echo 'desabilitaTOT(\''.$capa.'\');';
+            echo 'desabilitaTOT(\'' . $capa . '\');';
         } ?>
     </script>
 <?php

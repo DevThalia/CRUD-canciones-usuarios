@@ -15,6 +15,11 @@
             class="block p-4 bg-green-700 rounded-lg hover:bg-green-600" 
             :to="{ path: '/listar-usuarios' }" 
             @click="mostrarLista('usuarios')">Lista de usuarios</router-link>
+
+          <router-link
+          class="block p-4 bg-green-700 rounded-lg hover:bg-green-600" 
+          :to="{ path: '/lista-proveedores' }"
+          @click="mostrarLista('proveedores')">Lista de proveedores</router-link>
         </div>
       </div>
     </div>
@@ -68,7 +73,7 @@ button:active {
 }
 
 .ml-64 {
-  margin-left: 16rem; /* Espacio suficiente para el menú lateral */
+  margin-left: 16rem; 
 }
 
 .fwb-button {
