@@ -6,6 +6,8 @@ class Usuario
     private $username;
     private $email;
     private $phone;
+    private $password;
+    private $nivel;
 
     private $connection;
     private $errorMessage;
@@ -20,6 +22,55 @@ class Usuario
 
         if ($userId !== null) {
             $this->load($userId);
+        }
+    }
+
+    // Registrar un nuevo usuario
+    public function register()
+    {
+        if (empty(trim($this->name)) || empty(trim($this->password))) {
+            return $this->setError("Todos los campos son obligatorios.");
+        }
+        $nivel = 'user';
+        $query = "INSERT INTO USERS (name, password, nivel) VALUES (?, ?, ?)";
+        $stmt = $this->connection->prepare($query);
+        if (!$stmt) {
+            return $this->setError("Error al preparar la consulta: " . $this->connection->error);
+        }
+        $stmt->bind_param("sss", $this->name, $this->password, $nivel);  
+        if ($stmt->execute()) {
+            $this->userId = $this->connection->insert_id;
+            return true;
+        } else {
+            return $this->setError("Error al registrar el usuario: " . $stmt->error);
+        }
+    }
+
+
+
+    // Iniciar sesión
+    public function login()
+    {
+        if (empty($this->email) || empty($this->password)) {
+            return $this->setError("Todos los campos son obligatorios.");
+        }
+
+        $query = "SELECT * FROM USERS WHERE email = ? AND password = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bind_param("ss", $this->email, $this->password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $this->userId = $row['userId'];
+            $this->name = $row['name'];
+            $this->username = $row['username'];
+            $this->email = $row['email'];
+            $this->phone = $row['phone'];
+            return true;
+        } else {
+            return $this->setError("Usuario o contraseña incorrectos.");
         }
     }
 
@@ -191,6 +242,14 @@ class Usuario
     {
         return $this->phone;
     }
+    public function getPassword()
+    {
+        return $this->password;
+    }
+    public function getNivel()
+    {
+        return $this->nivel;
+    }
 
     // Métodos de modificación
     public function setUserId($userId)
@@ -212,6 +271,14 @@ class Usuario
     public function setPhone($phone)
     {
         $this->phone = $phone;
+    }
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+    public function setNivel($nivel)
+    {
+        $this->nivel = $nivel;
     }
 
     // Manejar errores
