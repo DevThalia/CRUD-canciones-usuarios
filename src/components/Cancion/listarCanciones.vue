@@ -1,7 +1,7 @@
 <template>
   <div class="p-6 max-w-7xl mx-auto">
     <h2 class="text-3xl font-semibold text-gray-800 mb-4">Listado de Canciones</h2>
-    
+
     <!-- Botón para crear una canción -->
     <router-link to="/crear-cancion">
       <fwb-button color="yellow" pill type="submit" class="btn btn-primary w-full">Crear canción</fwb-button>
@@ -20,9 +20,33 @@
     <table v-else class="table-auto w-full text-left bg-white shadow-md rounded-lg">
       <thead class="bg-gray-100">
         <tr>
-          <th class="px-6 py-4 text-lg font-semibold text-gray-700">ID</th>
-          <th class="px-6 py-4 text-lg font-semibold text-gray-700">Título</th>
-          <th class="px-6 py-4 text-lg font-semibold text-gray-700">Artista</th>
+          <th class="px-6 py-4 text-lg font-semibold text-gray-700">
+            ID
+            <input
+              type="text"
+              v-model="filtros.id"
+              placeholder="Filtrar por ID"
+              class="w-full p-2 border rounded-lg mt-2"
+            />
+          </th>
+          <th class="px-6 py-4 text-lg font-semibold text-gray-700">
+            Título
+            <input
+              type="text"
+              v-model="filtros.titulo"
+              placeholder="Filtrar por Título"
+              class="w-full p-2 border rounded-lg mt-2"
+            />
+          </th>
+          <th class="px-6 py-4 text-lg font-semibold text-gray-700">
+            Artista
+            <input
+              type="text"
+              v-model="filtros.artista"
+              placeholder="Filtrar por Artista"
+              class="w-full p-2 border rounded-lg mt-2"
+            />
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -58,6 +82,13 @@ const loading = ref(true);
 const currentPage = ref(1);
 const itemsPerPage = 10;  
 
+// Filtros por columna
+const filtros = ref({
+  id: '',
+  titulo: '',
+  artista: ''
+});
+
 const cargarCanciones = async () => {
   try {
     const response = await fetch(`http://localhost/proyectoVue/proyecto-vue/api/Cancion/GET/listaCanciones.php`);
@@ -77,13 +108,29 @@ const cargarCanciones = async () => {
   }
 };
 
+const cancionesFiltradas = computed(() => {
+  return canciones.value.filter(cancion => {
+    const matchId = filtros.value.id
+      ? cancion.songId.toString().includes(filtros.value.id)
+      : true;
+    const matchTitulo = filtros.value.titulo
+      ? cancion.title.toLowerCase().includes(filtros.value.titulo.toLowerCase())
+      : true;
+    const matchArtista = filtros.value.artista
+      ? cancion.artist.toLowerCase().includes(filtros.value.artista.toLowerCase())
+      : true;
+
+    return matchId && matchTitulo && matchArtista;
+  });
+});
+
 const paginatedCanciones = computed(() => {
   const startIndex = (currentPage.value - 1) * itemsPerPage;
-  return canciones.value.slice(startIndex, startIndex + itemsPerPage);
+  return cancionesFiltradas.value.slice(startIndex, startIndex + itemsPerPage);
 });
 
 const totalPages = computed(() => {
-  return Math.ceil(canciones.value.length / itemsPerPage);
+  return Math.ceil(cancionesFiltradas.value.length / itemsPerPage);
 });
 
 onBeforeMount(cargarCanciones);
@@ -96,5 +143,9 @@ table {
 
 th, td {
   padding: 1rem;  
+}
+
+input {
+  font-size: 1rem;
 }
 </style>

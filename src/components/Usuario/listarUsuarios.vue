@@ -21,9 +21,21 @@
         <table v-else class="table-auto w-full text-left bg-white shadow-md rounded-lg">
             <thead class="bg-gray-100">
                 <tr>
-                    <th class="px-6 py-4 text-lg font-semibold text-gray-700">ID</th>
-                    <th class="px-6 py-4 text-lg font-semibold text-gray-700">Nombre</th>
-                    <th class="px-6 py-4 text-lg font-semibold text-gray-700">Teléfono</th>
+                    <th class="px-6 py-4 text-lg font-semibold text-gray-700">
+                        ID
+                        <input type="text" v-model="filtros.id" placeholder="Filtrar por ID"
+                            class="w-full p-2 border rounded-lg mt-2" />
+                    </th>
+                    <th class="px-6 py-4 text-lg font-semibold text-gray-700">
+                        Nombre
+                        <input type="text" v-model="filtros.nombre" placeholder="Filtrar por Nombre"
+                            class="w-full p-2 border rounded-lg mt-2" />
+                    </th>
+                    <th class="px-6 py-4 text-lg font-semibold text-gray-700">
+                        Teléfono
+                        <input type="text" v-model="filtros.telefono" placeholder="Filtrar por Teléfono"
+                            class="w-full p-2 border rounded-lg mt-2" />
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +65,13 @@ import { FwbButton, FwbPagination } from 'flowbite-vue';
 const usuarios = ref([]);
 const loading = ref(true);
 const currentPage = ref(1);
-const itemsPerPage = 10;  
+const itemsPerPage = 10;
+
+const filtros = ref({
+    id: '',
+    nombre: '',
+    telefono: ''
+});
 
 const cargarUsuarios = async () => {
     try {
@@ -74,13 +92,29 @@ const cargarUsuarios = async () => {
     }
 };
 
+const usuariosFiltrados = computed(() => {
+    return usuarios.value.filter(usuario => {
+        const matchId = filtros.value.id
+            ? usuario.userId.toString().includes(filtros.value.id)
+            : true;
+        const matchNombre = filtros.value.nombre
+            ? usuario.name.toLowerCase().includes(filtros.value.nombre.toLowerCase())
+            : true;
+        const matchTelefono = filtros.value.telefono
+            ? usuario.phone.toLowerCase().includes(filtros.value.telefono.toLowerCase())
+            : true;
+
+        return matchId && matchNombre && matchTelefono;
+    });
+});
+
 const paginatedUsuarios = computed(() => {
     const startIndex = (currentPage.value - 1) * itemsPerPage;
-    return usuarios.value.slice(startIndex, startIndex + itemsPerPage);
+    return usuariosFiltrados.value.slice(startIndex, startIndex + itemsPerPage);
 });
 
 const totalPages = computed(() => {
-    return Math.ceil(usuarios.value.length / itemsPerPage);
+    return Math.ceil(usuariosFiltrados.value.length / itemsPerPage);
 });
 
 onBeforeMount(cargarUsuarios);
@@ -88,10 +122,15 @@ onBeforeMount(cargarUsuarios);
 
 <style scoped>
 table {
-    font-size: 1.125rem;  
+    font-size: 1.125rem;
 }
 
-th, td {
-    padding: 1rem;  
+th,
+td {
+    padding: 1rem;
+}
+
+input {
+    font-size: 1rem;
 }
 </style>
