@@ -24,9 +24,7 @@
             <p>¿No tienes cuenta? <a @click="toggleRegister" class="text-blue-500 cursor-pointer">Regístrate</a></p>
         </div>
 
-        <!-- Formulario de registro -->
         <div v-if="isRegistering" class="mt-6">
-            <!-- Escuchar el evento 'registered' emitido por el componente de registro -->
             <RegistroUsuario @registered="handleRegistration" />
         </div>
     </div>

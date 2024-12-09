@@ -23,15 +23,9 @@
 
 <script setup>
 import { ref } from 'vue';
-
-// Definir las variables reactivas
 const nombre = ref('');
 const password = ref('');
-
-// Usar defineEmits para crear un evento customizado 'registered'
 const emit = defineEmits();
-
-// Función de registro de usuario
 const registrarUsuario = async () => {
     try {
         const response = await fetch(
@@ -47,12 +41,10 @@ const registrarUsuario = async () => {
                 }),
             }
         );
-
         const result = await response.json();
-
         if (result.success) {
             alert('Usuario registrado exitosamente');
-            emit('registered');  // Emitir evento de registro exitoso
+            emit('registered');
         } else {
             alert('Error al registrar el usuario: ' + result.message);
         }
@@ -63,6 +55,4 @@ const registrarUsuario = async () => {
 };
 </script>
 
-<style scoped>
-/* Estilos personalizados */
-</style>
+<style scoped></style>

@@ -1,11 +1,8 @@
 <template>
   <div class="min-h-screen flex">
-    <!-- Menú lateral fijo -->
     <div class="w-64 bg-green-500 text-white p-6 fixed top-0 left-0 bottom-0 flex flex-col justify-between">
       <div>
         <h1 class="text-3xl font-bold mb-8">Gestión de usuarios y canciones</h1>
-
-        <!-- Opciones del menú -->
         <div class="space-y-4">
           <router-link 
             class="block p-4 bg-green-700 rounded-lg hover:bg-green-600" 
@@ -15,7 +12,6 @@
             class="block p-4 bg-green-700 rounded-lg hover:bg-green-600" 
             :to="{ path: '/listar-usuarios' }" 
             @click="mostrarLista('usuarios')">Lista de usuarios</router-link>
-
           <router-link
           class="block p-4 bg-green-700 rounded-lg hover:bg-green-600" 
           :to="{ path: '/lista-proveedores' }"
@@ -23,10 +19,7 @@
         </div>
       </div>
     </div>
-
-    <!-- Contenedor de contenido a la derecha -->
     <div class="flex-1 p-8 ml-64 bg-gray-100">
-      <!-- Página de lista o detalles -->
       <div v-if="showList">
         <router-view />
       </div>
@@ -36,12 +29,8 @@
 
 <script setup>
 import { ref } from 'vue';
-//import { useRouter } from 'vue-router';
-
 const showList = ref(false);
 const currentList = ref(null);
-//const router = useRouter();
-
 const mostrarLista = (list) => {
   currentList.value = list;
   showList.value = true;
