@@ -78,17 +78,14 @@ export default class Cancion {
         console.log("Filtros aplicados:", this.#filtros);  
         return this.#canciones.filter(cancion => {
             const matchId = this.#filtros.id
-                ? cancion.songId.toString().includes(this.#filtros.id)
+                ? cancion.songId.toString().startsWith(this.#filtros.id)
                 : true;
             const matchTitulo = this.#filtros.titulo
-                ? cancion.title.toLowerCase().includes(this.#filtros.titulo.toLowerCase())
+                ? cancion.title.toLowerCase().startsWith(this.#filtros.titulo.toLowerCase())
                 : true;
             const matchArtista = this.#filtros.artista
-                ? cancion.artist.toLowerCase().includes(this.#filtros.artista.toLowerCase())
-                : true;
-    
-            console.log("Cargando canción:", cancion);  
-    
+                ? cancion.artist.toLowerCase().startsWith(this.#filtros.artista.toLowerCase())
+                : true;    
             return matchId && matchTitulo && matchArtista;
         });
     }
