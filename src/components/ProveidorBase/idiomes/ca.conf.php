@@ -21,7 +21,6 @@ if(!defined('T_PROVEIDOR_CIF')) define('T_PROVEIDOR_CIF','CIF proveidor');
 
 /* CONG CA */
 
-<?php
 if(!defined('T_ERROR_FALTEN_CAMPS')) define('T_ERROR_FALTEN_CAMPS','Falten camps o algun camp es incorrecte');
 if(!defined('T_ERROR_CAMPS_NO_EXIXTEIX')) define('T_ERROR_CAMPS_NO_EXIXTEIX','El camp no existeix');
 if(!defined('T_PERMIS_DENEGAT')) define('T_PERMIS_DENEGAT','Permís denegat');
