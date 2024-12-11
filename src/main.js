@@ -3,6 +3,8 @@ import App from './App.vue';
 import router from './router';
 
 import 'flowbite/dist/flowbite.min.css';
+import 'flowbite';
+
 
 
 createApp(App)

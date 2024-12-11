@@ -75,53 +75,34 @@
 
 <script setup>
 import { ref, onBeforeMount, computed } from 'vue';
+import Cancion from '@/components/Cancion/store/Cancion.class';
 import { FwbButton, FwbPagination } from 'flowbite-vue';
 
 const canciones = ref([]);
 const loading = ref(true);
 const currentPage = ref(1);
-const itemsPerPage = 10;  
+const itemsPerPage = 10;
 
-// Filtros por columna
 const filtros = ref({
   id: '',
   titulo: '',
   artista: ''
 });
 
-const cargarCanciones = async () => {
-  try {
-    const response = await fetch(`http://localhost/proyectoVue/proyecto-vue/api/Cancion/GET/listaCanciones.php`);
-    const result = await response.json();
+const cancionInstance = new Cancion();
 
-    if (result.success) {
-      canciones.value = result.data;
-    } else {
-      console.error('Error al obtener canciones:', result.message);
-      canciones.value = [];
-    }
-  } catch (error) {
-    console.error('Error de red:', error);
-    canciones.value = [];
-  } finally {
-    loading.value = false;
-  }
+const cargarCanciones = async () => {
+  loading.value = true;
+  cancionInstance.filtros = filtros.value;
+  await cancionInstance.cargarCanciones();
+  canciones.value = cancionInstance.obtenerCanciones();
+  loading.value = false;
 };
 
 const cancionesFiltradas = computed(() => {
-  return canciones.value.filter(cancion => {
-    const matchId = filtros.value.id
-      ? cancion.songId.toString().includes(filtros.value.id)
-      : true;
-    const matchTitulo = filtros.value.titulo
-      ? cancion.title.toLowerCase().includes(filtros.value.titulo.toLowerCase())
-      : true;
-    const matchArtista = filtros.value.artista
-      ? cancion.artist.toLowerCase().includes(filtros.value.artista.toLowerCase())
-      : true;
-
-    return matchId && matchTitulo && matchArtista;
-  });
+  const filtered = cancionInstance.cancionesFiltradas();
+  console.log(canciones.value);
+  return filtered;
 });
 
 const paginatedCanciones = computed(() => {
@@ -136,16 +117,3 @@ const totalPages = computed(() => {
 onBeforeMount(cargarCanciones);
 </script>
 
-<style scoped>
-table {
-  font-size: 1.125rem;  
-}
-
-th, td {
-  padding: 1rem;  
-}
-
-input {
-  font-size: 1rem;
-}
-</style>
