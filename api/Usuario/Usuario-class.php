@@ -90,6 +90,8 @@ class Usuario
                 $this->username = $row['username'];
                 $this->email = $row['email'];
                 $this->phone = $row['phone'];
+                $this->password = $row['password'];
+                $this->nivel = $row['nivel'];
             } else {
                 $this->setError("No se encontró el usuario.");
             }
@@ -191,6 +193,8 @@ class Usuario
                 $usuario['username'] = $row['username'];
                 $usuario['email'] = $row['email'];
                 $usuario['phone'] = $row['phone'];
+                $usuario['nivel'] = $row['nivel'];
+                $usuario['password'] = $row['password'];
                 $usuarios[] = $usuario;
             }
         }

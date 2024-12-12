@@ -35,7 +35,8 @@
                 <h3 class="text-3xl font-bold text-gray-800">{{ usuario.name }}</h3>
                 <p class="text-xl text-gray-600"><strong>Nombre usuario:</strong> {{ usuario.username }}</p>
                 <p class="text-xl text-gray-600"><strong>Email:</strong> {{ usuario.email }}</p>
-                <p class="text-xl text-gray-600"><strong>Telefono:</strong> {{ usuario.name }}</p>
+                <p class="text-xl text-gray-600"><strong>Telefono:</strong> {{ usuario.phone }}</p>
+                <p class="text-xl text-gray-600"><strong>Nivel:</strong> {{ usuario.nivel }}</p>
             </div>
         </div>
 
@@ -99,7 +100,8 @@ const usuario = ref({
     name: '',
     username: '',
     email: '',
-    phone: ''
+    phone: '',
+    nivel: ''
 });
 
 const loading = ref(true);

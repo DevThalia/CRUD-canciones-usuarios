@@ -31,7 +31,9 @@ if(isset($_GET['userId'])){
             'name' => $usuario->getName(),
             'username' => $usuario->getUsername(),
             'email' => $usuario->getEmail(),
-            'phone' => $usuario->getPhone()
+            'phone' => $usuario->getPhone(),
+            'nivel' => $usuario->getNivel(),
+            'password' => $usuario->getPassword()
         );
     } else {
         $response['message'] = 'No se encontró el usuario solicitado.';
