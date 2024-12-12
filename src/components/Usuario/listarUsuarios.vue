@@ -61,6 +61,8 @@
 <script setup>
 import { ref, onBeforeMount, computed } from 'vue';
 import { FwbButton, FwbPagination } from 'flowbite-vue';
+import Usuario from '@/components/Usuario/store/Usuario.class';
+
 
 const usuarios = ref([]);
 const loading = ref(true);
@@ -73,40 +75,21 @@ const filtros = ref({
     telefono: ''
 });
 
+const usuarioInstancia = new Usuario();
+
 const cargarUsuarios = async () => {
-    try {
-        const response = await fetch(`http://localhost/proyectoVue/proyecto-vue/api/Usuario/GET/listaUsuarios.php`);
-        const result = await response.json();
+    loading.value = true;
+    usuarioInstancia.filtros = filtros.value;
+    await usuarioInstancia.cargarUsuarios();
+    usuarios.value = usuarioInstancia.usuarios;
+    loading.value = false;
+}
 
-        if (result.success) {
-            usuarios.value = result.data;
-        } else {
-            console.error('Error al obtener usuarios:', result.message);
-            usuarios.value = [];
-        }
-    } catch (error) {
-        console.error('Error de red:', error);
-        usuarios.value = [];
-    } finally {
-        loading.value = false;
-    }
-};
-
-const usuariosFiltrados = computed(() => {
-    return usuarios.value.filter(usuario => {
-        const matchId = filtros.value.id
-            ? usuario.userId.toString().includes(filtros.value.id)
-            : true;
-        const matchNombre = filtros.value.nombre
-            ? usuario.name.toLowerCase().includes(filtros.value.nombre.toLowerCase())
-            : true;
-        const matchTelefono = filtros.value.telefono
-            ? usuario.phone.toLowerCase().includes(filtros.value.telefono.toLowerCase())
-            : true;
-
-        return matchId && matchNombre && matchTelefono;
-    });
-});
+const usuariosFiltrados = computed (()=>{
+    const filtered = usuarioInstancia.usuariosFiltrados();
+    console.log(usuarios.value);
+    return filtered;
+})
 
 const paginatedUsuarios = computed(() => {
     const startIndex = (currentPage.value - 1) * itemsPerPage;
